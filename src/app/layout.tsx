@@ -10,8 +10,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-    title: 'Arigato Travel',
-    description: 'Culinary And Cultural Experiences In Japan.',
+    title: 'Evently',
+    description: 'Your Events, Our Platform!',
     icons: {
         icon: "/assets/images/logo.svg"
     }

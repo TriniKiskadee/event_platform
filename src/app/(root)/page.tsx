@@ -2,10 +2,10 @@ import Image from 'next/image'
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Collection from "@/components/shared/Collection";
-import {getAllEvent} from "@/lib/actions/event.actions";
+import {getAllEvents} from "@/lib/actions/event.actions";
 
 export default async function Home() {
-    const events = await getAllEvent({
+    const events = await getAllEvents({
         query: "",
         category: "",
         page: 1,
