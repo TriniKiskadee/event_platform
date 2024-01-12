@@ -1,7 +1,10 @@
 "use client"
 
 import {IEvent} from "@/lib/database/models/event.model";
-import {useUser} from "@clerk/nextjs";
+import {SignedIn, SignedOut, useUser} from "@clerk/nextjs";
+import {Button} from "@/components/ui/button";
+import Link from "next/link";
+import Checkout from "@/components/shared/Checkout";
 
 const CheckoutButton = ({event}: {event: IEvent}) => {
     const {user} = useUser()
@@ -13,10 +16,29 @@ const CheckoutButton = ({event}: {event: IEvent}) => {
         <div className={"flex items-center gap-3"}>
             {/* Cannot buy past event */}
             {hasEventFinished ? (
-                <p>Sorry, Tickets are no longer available.</p>
+                <p className={"p-2 text-red-400"}>
+                    Sorry, Tickets are no longer available.
+                </p>
             ): (
                 <>
-                    Button
+                    <SignedOut>
+                        <Button
+                            asChild
+                            className={"button rounded-full size-lg"}
+                        >
+                            <Link
+                                href={"/sign-in"}
+                            >
+                                Get Tickets
+                            </Link>
+                        </Button>
+                    </SignedOut>
+                    <SignedIn>
+                        <Checkout
+                            event={event}
+                            userId={userId}
+                        />
+                    </SignedIn>
                 </>
             )}
         </div>
